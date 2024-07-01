@@ -10,13 +10,12 @@ const Message = require('./Models/Message.js');
 dotenv.config();
 
 // CORS configuration
-const corsOptions = {
+app.use(cors({
     origin: 'https://social-media-host-frontends.vercel.app',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-};
+}));
 
-app.use(cors(corsOptions));
 app.use(express.json());
 
 // MongoDB connection setup
@@ -85,7 +84,7 @@ io.on('connection', (socket) => {
 });
 
 // Server setup
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5002;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
