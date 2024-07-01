@@ -12,7 +12,6 @@ import { LogoutData } from '../Redux/UserSlice';
 function Profile() {
   const [profile, setProfile] = useState({});
   const MyData = useSelector((state) => state.userlogin.LoginInfo[0]);
-  const [profilePic, setProfilePic] = useState(null);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,10 +30,6 @@ function Profile() {
       const MyProfileData = await profileView(ID);
       console.log('Profile data:', MyProfileData);
       setProfile(MyProfileData);
-
-      if (MyProfileData.ProfilePic) {
-        setProfilePic(`/Images/${MyProfileData.ProfilePic}`);
-      }
     } catch (error) {
       console.error('Error fetching profile data:', error);
     }
@@ -82,10 +77,10 @@ function Profile() {
       });
 
       const updatedPost = response.data;
-      const updatedPosts = [...allPosts];
+      const updatedPosts = [...posts];
       updatedPosts[index] = updatedPost;
 
-      setAllPosts(updatedPosts);
+      setPosts(updatedPosts);
       setCurrentComment("");
       setShowCommentInput(null);
     } catch (error) {
