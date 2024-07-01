@@ -6,7 +6,7 @@ import './Message.css';
 import SideNav from './SideNav';
 import { basicRequest } from '../AxiosCreate';
 
-const socket = io('https://social-media-host-backends.vercel.app');
+const socket = io('http://localhost:5001');
 
 function Message() {
   const [messages, setMessages] = useState([]);
@@ -81,7 +81,7 @@ function Message() {
   return (
 
     <div className="message-container">
-      <div className='SideNav'>
+      <div className='message-SideNav'>
         <SideNav/>
       </div>
       <div className="users-list">
