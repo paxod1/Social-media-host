@@ -31,10 +31,6 @@ function Profile() {
       const MyProfileData = await profileView(ID);
       console.log('Profile data:', MyProfileData);
       setProfile(MyProfileData);
-
-      if (MyProfileData.ProfilePic) {
-        setProfilePic(`/Images/${MyProfileData.ProfilePic}`);
-      }
     } catch (error) {
       console.error('Error fetching profile data:', error);
     }
