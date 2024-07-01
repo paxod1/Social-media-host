@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SampleUrl = 'https://social-media-host-backends.vercel.app';
+const SampleUrl = 'https://social-media-host-backends.onrender.com';
 
 // Axios instance with basic configuration
 export const basicRequest = axios.create({
