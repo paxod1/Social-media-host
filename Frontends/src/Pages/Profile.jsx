@@ -31,6 +31,10 @@ function Profile() {
       const MyProfileData = await profileView(ID);
       console.log('Profile data:', MyProfileData);
       setProfile(MyProfileData);
+
+      if (MyProfileData.ProfilePic) {
+        setProfilePic(`/Images/${MyProfileData.ProfilePic}`);
+      }
     } catch (error) {
       console.error('Error fetching profile data:', error);
     }
@@ -97,7 +101,14 @@ function Profile() {
       <div className="profile-container">
         <header className="profile-header">
           <div className="profile-pic">
-            <img src={`/Images/${profile.ProfilePic}`} alt="Profile" />
+            <img
+              src={profilePic || 'https://via.placeholder.com/150'}
+              alt="Profile"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://via.placeholder.com/150';
+              }}
+            />
           </div>
           <div className="profile-info">
             <h2 className="profile-username">{profile.username || 'Loading...'}</h2>
