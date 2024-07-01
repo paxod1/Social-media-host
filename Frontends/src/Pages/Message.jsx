@@ -25,7 +25,7 @@ function Message() {
         const usersData = response.data.filter(user => user._id !== userId);
         setUsers(usersData);
 
-        const profilePromises = usersData.map(user => basicRequest.get(`/profile/${user._id}`));
+        const profilePromises = usersData.map(user => basicRequest.get(`/admin/profile/${user._id}`));
         const profilesResponse = await Promise.all(profilePromises);
         const profilesData = profilesResponse.map(res => res.data);
         setUserProfiles(profilesData);
