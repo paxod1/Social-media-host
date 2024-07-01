@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+axios.defaults.withCredentials=true;
 const SampleUrl = 'https://social-media-host-backends.vercel.app';
 const persistedLoginData = localStorage.getItem("persist:logindata");
 const loginData = persistedLoginData ? JSON.parse(persistedLoginData) : {};
