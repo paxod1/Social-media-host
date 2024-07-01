@@ -97,12 +97,8 @@ function Profile() {
         <header className="profile-header">
           <div className="profile-pic">
             <img
-              src={profile.ProfilePic ? `https://social-media-host-frontends.vercel.app/Images/${profile.ProfilePic}` : 'https://via.placeholder.com/150'}
-              alt="Profile"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = 'https://via.placeholder.com/150';
-              }}
+            src={profile.ProfilePic ? `./Images/${profile.ProfilePic}` : 'https://via.placeholder.com/150'}
+            alt="Profile"
             />
           </div>
           <div className="profile-info">
