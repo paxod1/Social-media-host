@@ -8,11 +8,13 @@ const { Server } = require('socket.io');
 const Message = require('./Models/Message.js');
 
 dotenv.config();
-app.use(cors({
-    origin:["https://social-media-host-frontends.vercel.app"],
-    methods:["POST","GET"],
-    credentials:true
-}));
+const corsOptions = {
+    origin: 'https://social-media-host-frontends.vercel.app/', // Replace with your frontend URL
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const UserRouter = require('./routers/UserRouter');
@@ -22,12 +24,12 @@ mongoose.connect(process.env.MongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-.then(() => {
-    console.log("Database is connected");
-})
-.catch((err) => {
-    console.error("Error connecting to database:", err);
-});
+    .then(() => {
+        console.log("Database is connected");
+    })
+    .catch((err) => {
+        console.error("Error connecting to database:", err);
+    });
 
 app.use('/home', UserRouter);
 app.use('/admin', AdminRouter);
@@ -35,7 +37,7 @@ app.use('/admin', AdminRouter);
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173", 
+        origin: "http://localhost:5173",
         methods: ["GET", "POST"]
     }
 });
