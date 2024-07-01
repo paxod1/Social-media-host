@@ -8,8 +8,10 @@ const { Server } = require('socket.io');
 const Message = require('./Models/Message.js');
 
 dotenv.config();
+
+// CORS configuration
 const corsOptions = {
-    origin: '*',
+    origin: 'https://social-media-host-frontends.vercel.app',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
@@ -17,9 +19,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-const UserRouter = require('./routers/UserRouter');
-const AdminRouter = require('./routers/AdminRouter');
-
+// MongoDB connection setup
 mongoose.connect(process.env.MongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -31,13 +31,17 @@ mongoose.connect(process.env.MongoUrl, {
         console.error("Error connecting to database:", err);
     });
 
+// Routes setup
+const UserRouter = require('./routers/UserRouter');
+const AdminRouter = require('./routers/AdminRouter');
 app.use('/home', UserRouter);
 app.use('/admin', AdminRouter);
 
+// Socket.io setup
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "http://localhost:5173", // Adjust as necessary
         methods: ["GET", "POST"]
     }
 });
@@ -45,6 +49,7 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
     console.log('a user connected');
 
+    // Socket.io event listeners
     socket.on('joinRoom', async (room) => {
         try {
             socket.join(room);
@@ -79,6 +84,7 @@ io.on('connection', (socket) => {
     });
 });
 
+// Server setup
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
