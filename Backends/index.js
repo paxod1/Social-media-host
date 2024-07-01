@@ -9,7 +9,7 @@ const Message = require('./Models/Message.js');
 
 dotenv.config();
 app.use(cors({
-    origin:[""],
+    origin:["https://social-media-host-frontends.vercel.app"],
     methods:["POST","GET"],
     credentials:true
 }));
