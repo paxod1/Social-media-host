@@ -6,7 +6,7 @@ import './Message.css';
 import SideNav from './SideNav';
 import { basicRequest } from '../AxiosCreate';
 
-const socket = io(basicRequest);
+const socket = io('https://social-media-host-backends.vercel.app');
 
 function Message() {
   const [messages, setMessages] = useState([]);

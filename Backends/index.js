@@ -41,7 +41,7 @@ app.use('/admin', AdminRouter);
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://social-media-host-frontends.vercel.app", // Adjust as necessary
+        origin: "https://social-media-host-frontends.vercel.app", 
         methods: ["GET", "POST"]
     }
 });
