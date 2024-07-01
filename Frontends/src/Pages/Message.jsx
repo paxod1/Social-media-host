@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import './Message.css';
 import SideNav from './SideNav';
+import { basicRequest } from '../AxiosCreate';
 
-const socket = io('http://localhost:5001');
+const socket = io(basicRequest);
 
 function Message() {
   const [messages, setMessages] = useState([]);
@@ -20,11 +21,11 @@ function Message() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/admin/AllUsers');
+        const response = await basicRequest.get('/admin/AllUsers');
         const usersData = response.data.filter(user => user._id !== userId);
         setUsers(usersData);
 
-        const profilePromises = usersData.map(user => axios.get(`http://localhost:5001/profile/${user._id}`));
+        const profilePromises = usersData.map(user => basicRequest.get(`/profile/${user._id}`));
         const profilesResponse = await Promise.all(profilePromises);
         const profilesData = profilesResponse.map(res => res.data);
         setUserProfiles(profilesData);
