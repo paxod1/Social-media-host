@@ -9,7 +9,7 @@ const Message = require('./Models/Message.js');
 
 dotenv.config();
 const corsOptions = {
-    origin: 'https://social-media-host-frontends.vercel.app/', // Replace with your frontend URL
+    origin: 'https://social-media-host-frontends.vercel.app', 
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
