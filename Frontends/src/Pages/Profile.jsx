@@ -29,12 +29,11 @@ function Profile() {
   async function getProfile(ID) {
     try {
       const MyProfileData = await profileView(ID);
+      console.log('Profile data:', MyProfileData);
       setProfile(MyProfileData);
 
       if (MyProfileData.ProfilePic) {
-        import(`/Images/${MyProfileData.ProfilePic}`)
-          .then(image => setProfilePic(image.default))
-          .catch(err => console.log('Error loading profile picture:', err));
+        setProfilePic(`/Images/${MyProfileData.ProfilePic}`);
       }
     } catch (error) {
       console.error('Error fetching profile data:', error);
@@ -64,7 +63,7 @@ function Profile() {
     dispatch(LogoutData());
     navigate('/login');
   }
-  
+
   const handleCommentInput = (index) => {
     setShowCommentInput(showCommentInput === index ? null : index);
   };
@@ -94,7 +93,6 @@ function Profile() {
     }
   };
 
-
   return (
     <div className="profile-page">
       <div className='SideNav'>
@@ -115,7 +113,7 @@ function Profile() {
                 <button className="profile-edit-btn" onClick={logoutUser}>Logout</button>
               </Link>
             </div>
-            <h3 >{profile.bio || 'Loading...'}</h3>
+            <h3>{profile.bio || 'Loading...'}</h3>
           </div>
         </header>
         <div className="profile-stats">
@@ -150,42 +148,42 @@ function Profile() {
                     }}
                   />
                   <div className="post-footer">
-                  <button className="like-button" onClick={() => LikedToPost(data._id, index)}>Like</button>
-                  <button className="comment-button" onClick={() => handleCommentInput(index)}>
-                    Comment
-                  </button>
-                  <div className="post-likes">{data.like} likes</div>
-                  <div className="post-caption">
-                    <strong>{data.username}</strong> {data.postBio}
-                  </div>
-                  {showCommentInput === index && (
-                    <div className="comment-input-section">
-                      <input
-                        type="text"
-                        value={currentComment}
-                        onChange={handleCommentChange}
-                        placeholder="Add a comment..."
-                      />
-                      <button onClick={() => handleCommentSubmit(index, data._id)}>Post</button>
+                    <button className="like-button" onClick={() => LikedToPost(data._id, index)}>Like</button>
+                    <button className="comment-button" onClick={() => handleCommentInput(index)}>
+                      Comment
+                    </button>
+                    <div className="post-likes">{data.like} likes</div>
+                    <div className="post-caption">
+                      <strong>{data.username}</strong> {data.postBio}
                     </div>
-                  )}
-                  <div className="post-comments">
-                    {data.comments && data.comments.slice(-1).map((comment, idx) => (
-                      <div key={idx} className="comment">
-                        <strong>{comment.username}</strong> {comment.text}
-                      </div>
-                    ))}
                     {showCommentInput === index && (
-                      <div>
-                        {data.comments && data.comments.slice(0, data.comments.length - 1).map((comment, idx) => (
-                          <div key={idx} className="comment">
-                            <strong>{comment.username}</strong> {comment.text}
-                          </div>
-                        ))}
+                      <div className="comment-input-section">
+                        <input
+                          type="text"
+                          value={currentComment}
+                          onChange={handleCommentChange}
+                          placeholder="Add a comment..."
+                        />
+                        <button onClick={() => handleCommentSubmit(index, data._id)}>Post</button>
                       </div>
                     )}
+                    <div className="post-comments">
+                      {data.comments && data.comments.slice(-1).map((comment, idx) => (
+                        <div key={idx} className="comment">
+                          <strong>{comment.username}</strong> {comment.text}
+                        </div>
+                      ))}
+                      {showCommentInput === index && (
+                        <div>
+                          {data.comments && data.comments.slice(0, data.comments.length - 1).map((comment, idx) => (
+                            <div key={idx} className="comment">
+                              <strong>{comment.username}</strong> {comment.text}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
                 </div>
               </div>
             ))
