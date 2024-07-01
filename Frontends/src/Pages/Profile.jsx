@@ -101,7 +101,7 @@ function Profile() {
       <div className="profile-container">
         <header className="profile-header">
           <div className="profile-pic">
-            <img src={`/Images/${profile.ProfilePic}`|| 'https://via.placeholder.com/150'} alt="Profile" />
+            <img src={`/Images/${profile.ProfilePic}`} alt="Profile" />
           </div>
           <div className="profile-info">
             <h2 className="profile-username">{profile.username || 'Loading...'}</h2>
