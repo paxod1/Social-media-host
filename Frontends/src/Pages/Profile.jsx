@@ -28,7 +28,7 @@ function Profile() {
   async function getProfile(ID) {
     try {
       const MyProfileData = await profileView(ID);
-      console.log('Profile data:', MyProfileData);
+      console.log('Profile data:', MyProfileData.ProfilePic);
       setProfile(MyProfileData);
     } catch (error) {
       console.error('Error fetching profile data:', error);
@@ -137,7 +137,7 @@ function Profile() {
               <div className="home-inner-profile" key={index}>
                 <div className="post-profile">
                   <img
-                  src={`/Images/${profile.ProfilePic}`}
+                  src={profile.ProfilePic ? `/Images/${profile.ProfilePic}` : 'https://via.placeholder.com/150'}
                   alt="Profile"
                   onError={(e) => {
                     console.error('Error loading profile picture:', e);
