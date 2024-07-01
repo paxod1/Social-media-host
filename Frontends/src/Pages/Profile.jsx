@@ -137,13 +137,13 @@ function Profile() {
               <div className="home-inner-profile" key={index}>
                 <div className="post-profile">
                   <img
-                    className="post-image-profile"
-                    src={`/Images/${data.postImage}`}
-                    alt="Post"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = 'https://via.placeholder.com/150';
-                    }}
+                  src={`/Images/${profile.ProfilePic}`}
+                  alt="Profile"
+                  onError={(e) => {
+                    console.error('Error loading profile picture:', e);
+                    e.target.onerror = null; // Prevent infinite loop in case of repeated errors
+                    e.target.src = 'https://via.placeholder.com/150'; // Placeholder image or default image URL
+                  }}
                   />
                   <div className="post-footer">
                     <button className="like-button" onClick={() => LikedToPost(data._id, index)}>Like</button>
