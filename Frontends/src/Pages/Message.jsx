@@ -6,7 +6,7 @@ import './Message.css';
 import SideNav from './SideNav';
 import { basicRequest } from '../AxiosCreate';
 
-const socket = io('http://localhost:5001');
+const socket = io('https://social-media-host-backends.onrender.com');
 
 function Message() {
   const [messages, setMessages] = useState([]);
