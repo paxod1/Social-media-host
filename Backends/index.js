@@ -46,9 +46,8 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('A user connected');
 
-    // Socket.io event listeners
     socket.on('joinRoom', async (room) => {
         try {
             socket.join(room);
@@ -71,15 +70,20 @@ io.on('connection', (socket) => {
             });
 
             await newMessage.save();
+            console.log('Message saved:', newMessage);
 
-            io.to(data.room).emit('chat message', { msg: data.msg, sender: data.sender, timestamp: newMessage.timestamp });
+            io.to(data.room).emit('chat message', { 
+                msg: data.msg, 
+                sender: data.sender, 
+                timestamp: newMessage.timestamp 
+            });
         } catch (error) {
             console.error('Error saving message or emitting to room:', error);
         }
     });
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log('User disconnected');
     });
 });
 
