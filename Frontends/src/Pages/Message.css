@@ -46,7 +46,13 @@
     line-height: 50px;
   }
 
-
+.post-avatar-message{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
 
   .users-list {
     margin-left: 5%;

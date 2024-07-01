@@ -88,7 +88,7 @@ function Message() {
         <h2>Users</h2>
         {users.map((user, index) => (
           <div key={user._id} onClick={() => handleUserSelect(user)} className='user-list-show'>
-            <img src={`/Images/${user.ProfilePic}`||'https://via.placeholder.com/150'} className="post-avatar" />
+            <img src={`/Images/${user.ProfilePic}`||'https://via.placeholder.com/150'} className="post-avatar-message" />
             {user.username}
           </div>
         ))}
