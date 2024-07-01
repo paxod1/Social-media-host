@@ -31,8 +31,8 @@ mongoose.connect(process.env.MongoUrl, {
     });
 
 // Routes setup
-const UserRouter = require('./routers/UserRouter');
-const AdminRouter = require('./routers/AdminRouter');
+const UserRouter = require('./Routers/UserRouter.js');
+const AdminRouter = require('./Routers/AdminRouter.js');
 app.use('/home', UserRouter);
 app.use('/admin', AdminRouter);
 
