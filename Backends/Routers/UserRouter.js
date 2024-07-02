@@ -11,7 +11,7 @@ const posts = require('../Models/Posts');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "../Frontend/Public/Images")
+        cb(null, "../Frontends/Public/Images")
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now()
