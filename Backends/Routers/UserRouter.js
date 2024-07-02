@@ -66,7 +66,7 @@ router.get('/ProfileData/:id',async (req, res) => {
     }
 });
 
-router.put('/UpdateProfile/:id', VerifyToken, upload.single("file"), async (req, res) => {
+router.put('/UpdateProfile/:id', upload.single("file"), async (req, res) => {
     try {
         const existingUser = await UserData.findById(req.params.id);
         if (!existingUser) {
