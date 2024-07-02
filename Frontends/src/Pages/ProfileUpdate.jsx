@@ -16,7 +16,7 @@ function ProfileUpdate() {
     const [profilePic, setProfilePic] = useState(null);
     const MyData = useSelector((state) => state.userlogin.LoginInfo[0]);
     const ID = MyData ? MyData.id : null;
-    const Navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (ID) {
@@ -32,7 +32,7 @@ function ProfileUpdate() {
             setFullname(MyProfileData.fullname);
             setEmail(MyProfileData.email);
             setBio(MyProfileData.bio);
-            setProfilePic(`/Images/${MyProfileData.ProfilePic}` || null);
+            setProfilePic(`https://social-media-host-backends.onrender.com/Images/${MyProfileData.ProfilePic}`);
         } catch (error) {
             console.error('Error fetching profile data:', error);
         }
@@ -57,10 +57,9 @@ function ProfileUpdate() {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 },
-
             });
             console.log('Profile updated successfully:', response.data);
-            Navigate('/Profile')
+            navigate('/Profile');
         } catch (error) {
             console.error('Error uploading the image', error);
         }
