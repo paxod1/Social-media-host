@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SampleUrl = 'https://social-media-host-backends.onrender.com';
+const SampleUrl = 'https://e-commercewebsite-uh5f.onrender.com';
 const persistedLoginData = localStorage.getItem("persist:logindata");
 const loginData = persistedLoginData ? JSON.parse(persistedLoginData) : {};
 const loginInfo = loginData.userlogin ? JSON.parse(loginData.userlogin).LoginInfo[0] : null;

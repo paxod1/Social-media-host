@@ -9,7 +9,7 @@ const Message = require('./Models/Message.js');
 
 dotenv.config();
 
-// CORS configuration
+
 app.use(cors({
     origin: 'https://social-media-host-psi.vercel.app',
     methods: ['GET', 'POST'],
