@@ -16,7 +16,7 @@ function ProfileUpdate() {
     const [profilePic, setProfilePic] = useState(null);
     const MyData = useSelector((state) => state.userlogin.LoginInfo[0]);
     const ID = MyData ? MyData.id : null;
-    const navigate = useNavigate();
+    const Navigate = useNavigate()
 
     useEffect(() => {
         if (ID) {
@@ -28,11 +28,11 @@ function ProfileUpdate() {
         try {
             const MyProfileData = await profileView(ID);
             setProfile(MyProfileData);
-            setUsername(MyProfileData?.username || '');
-            setFullname(MyProfileData?.fullname || '');
-            setEmail(MyProfileData?.email || '');
-            setBio(MyProfileData?.bio || '');
-            setProfilePic(MyProfileData?.ProfilePic ? `https://social-media-host-backends.onrender.com/Images/${MyProfileData.ProfilePic}` : 'https://via.placeholder.com/150');
+            setUsername(MyProfileData.username);
+            setFullname(MyProfileData.fullname);
+            setEmail(MyProfileData.email);
+            setBio(MyProfileData.bio);
+            setProfilePic(`/Images/${MyProfileData.ProfilePic}` || null);
         } catch (error) {
             console.error('Error fetching profile data:', error);
         }
@@ -57,9 +57,10 @@ function ProfileUpdate() {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 },
+
             });
             console.log('Profile updated successfully:', response.data);
-            navigate('/Profile');
+            Navigate('/Profile')
         } catch (error) {
             console.error('Error uploading the image', error);
         }
@@ -72,7 +73,7 @@ function ProfileUpdate() {
                 <div className="profile-container">
                     <header className="profile-header">
                         <div className="profile-pic">
-                            <img src={profilePic} alt="Profile" />
+                            <img src={profilePic || 'https://via.placeholder.com/150'} alt="Profile" />
                             <input type='file' id="fileInput" accept="image/*" onChange={handleImageChange} />
                         </div>
                         <div className="profile-info">
