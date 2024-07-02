@@ -100,14 +100,19 @@ function Home() {
     <div className='main-home'>
       <div className='main-25'>
         <div className='friends-suggestion'>
-          <div className="post-header">
-            <img 
-              className="post-avatar" 
-              src={`/Images/${profile.ProfilePic}` || 'https://via.placeholder.com/150'} 
-              alt="avatar" 
-            />
-            <span className="post-username">{profile?.username || 'Loading...'}</span>
-          </div>
+          {profile ? (
+            <div className="post-header">
+              <img
+                className="post-avatar"
+                src={`/Images/${profile.ProfilePic || 'https://via.placeholder.com/150'}`}
+                alt="avatar"
+              />
+              <span className="post-username">{profile.username}</span>
+            </div>
+          ) : (
+            <p>Loading profile...</p>
+          )}
+
           <div style={{ color: "GrayText" }}>Suggested for you</div>
           <div className="post-header">
             <img className="post-avatar" src="https://via.placeholder.com/50" alt="avatar" />

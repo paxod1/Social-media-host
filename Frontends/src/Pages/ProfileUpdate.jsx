@@ -28,11 +28,11 @@ function ProfileUpdate() {
         try {
             const MyProfileData = await profileView(ID);
             setProfile(MyProfileData);
-            setUsername(MyProfileData.username);
-            setFullname(MyProfileData.fullname);
-            setEmail(MyProfileData.email);
-            setBio(MyProfileData.bio);
-            setProfilePic(`https://social-media-host-backends.onrender.com/Images/${MyProfileData.ProfilePic}`);
+            setUsername(MyProfileData?.username || '');
+            setFullname(MyProfileData?.fullname || '');
+            setEmail(MyProfileData?.email || '');
+            setBio(MyProfileData?.bio || '');
+            setProfilePic(MyProfileData?.ProfilePic ? `https://social-media-host-backends.onrender.com/Images/${MyProfileData.ProfilePic}` : 'https://via.placeholder.com/150');
         } catch (error) {
             console.error('Error fetching profile data:', error);
         }
@@ -72,7 +72,7 @@ function ProfileUpdate() {
                 <div className="profile-container">
                     <header className="profile-header">
                         <div className="profile-pic">
-                            <img src={profilePic || 'https://via.placeholder.com/150'} alt="Profile" />
+                            <img src={profilePic} alt="Profile" />
                             <input type='file' id="fileInput" accept="image/*" onChange={handleImageChange} />
                         </div>
                         <div className="profile-info">
