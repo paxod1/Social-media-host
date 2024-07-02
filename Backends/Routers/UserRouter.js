@@ -106,7 +106,7 @@ router.put('/UpdateProfile/:id', upload.single("file"), async (req, res) => {
         res.status(200).json(updatedUser);
     } catch (err) {
         console.error("Failed to update profile:", err);
-        res.status(500).json({ error: "Failed to update profile" });
+        res.status(500).json({ error: "Failed to update profile",err });
     }
 });
 
