@@ -12,9 +12,10 @@ dotenv.config();
 
 app.use(cors({
     origin: 'https://social-media-host-psi.vercel.app',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 
 app.use(express.json());
 
