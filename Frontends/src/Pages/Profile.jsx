@@ -31,7 +31,7 @@ function Profile() {
     try {
       const MyProfileData = await profileView(ID);
       setProfile(MyProfileData);
-
+      console.log(MyProfileData);
       if (MyProfileData.ProfilePic) {
         import(`/Images/${MyProfileData.ProfilePic}`)
           .then(image => setProfilePic(image.default))
