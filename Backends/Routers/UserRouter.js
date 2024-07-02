@@ -66,14 +66,12 @@ router.get('/ProfileData/:id',async (req, res) => {
     }
 });
 
-
 router.put('/UpdateProfile/:id', VerifyToken, upload.single("file"), async (req, res) => {
     try {
         const existingUser = await UserData.findById(req.params.id);
         if (!existingUser) {
-            return res.status(404).json("User not found");
+            return res.status(404).json({ error: "User not found" });
         }
-
 
         const updateData = {};
 
@@ -101,10 +99,14 @@ router.put('/UpdateProfile/:id', VerifyToken, upload.single("file"), async (req,
             $set: updateData
         }, { new: true });
 
+        if (!updatedUser) {
+            return res.status(500).json({ error: "Failed to update user profile" });
+        }
+
         res.status(200).json(updatedUser);
     } catch (err) {
         console.error("Failed to update profile:", err);
-        res.status(500).json("Failed to update profile");
+        res.status(500).json({ error: "Failed to update profile" });
     }
 });
 
