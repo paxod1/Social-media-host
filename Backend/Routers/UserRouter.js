@@ -5,6 +5,7 @@ const JWT = require('jsonwebtoken');
 const VerifyToken = require('../VerifyToken');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const posts = require('../Models/Posts');
 
 
