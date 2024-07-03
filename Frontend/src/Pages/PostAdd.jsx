@@ -47,14 +47,14 @@ function PostAdd() {
         formData.append('file', postImage);
         formData.append('bio', postBio);
         formData.append('userId', userId);
-        formData.append('username', username); // Ensure username is included
-        formData.append('ProfilePic', ProfilePic); // Ensure ProfilePic is included
+        formData.append('username', username); 
+        formData.append('ProfilePic', ProfilePic); 
 
         try {
             await TokenRequest.post('/home/AddPost', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            Navigate('/Profile'); // Redirect to profile page after successful post creation
+            Navigate('/Profile'); 
         } catch (error) {
             console.error('Error uploading the post', error);
         }
@@ -62,7 +62,6 @@ function PostAdd() {
 
     return (
         <>
-            <SideNav />
             <div className="post-add-container">
                 <form onSubmit={handleSubmit} className="post-add-form">
                     <div className="image-upload">
