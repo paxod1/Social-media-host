@@ -11,7 +11,7 @@ dotenv.config();
 
 
 app.use(cors({
-    origin: 'https://social-media-host-psi.vercel.app',
+    origin: 'https://social-media-host-two.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -41,7 +41,7 @@ app.use('/admin', AdminRouter);
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://social-media-host-psi.vercel.app",
+        origin: "https://social-media-host-two.vercel.app",
         methods: ["GET", "POST"]
     }
 });
