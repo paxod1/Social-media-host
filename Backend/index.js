@@ -6,6 +6,7 @@ const cors = require('cors');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 const Message = require('./Models/Message.js');
+const path = require('path'); // Add this line
 
 dotenv.config();
 
@@ -16,7 +17,6 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
 
 app.use(express.json());
 
