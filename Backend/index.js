@@ -6,11 +6,18 @@ const cors = require('cors');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 const Message = require('./Models/Message.js');
-const path = require('path'); // Add this line
+const path = require('path');
+const fs = require('fs');
 
 dotenv.config();
 
-app.use('/Images', express.static(path.join(__dirname, '../Frontend/public/Images')));
+// Ensure the directory exists
+const imagesDir = path.join(__dirname, '../Frontend/public/Images');
+if (!fs.existsSync(imagesDir)) {
+    fs.mkdirSync(imagesDir, { recursive: true });
+}
+
+app.use('/Images', express.static(imagesDir));
 
 app.use(cors({
     origin: 'https://social-media-host-two.vercel.app',
