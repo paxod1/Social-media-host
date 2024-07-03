@@ -9,6 +9,7 @@ const Message = require('./Models/Message.js');
 
 dotenv.config();
 
+app.use('/Images', express.static(path.join(__dirname, '../Frontend/public/Images')));
 
 app.use(cors({
     origin: 'https://social-media-host-two.vercel.app',
