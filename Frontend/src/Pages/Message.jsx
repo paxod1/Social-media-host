@@ -9,7 +9,7 @@ import { MdHomeFilled } from 'react-icons/md';
 import { Link, NavLink } from 'react-router-dom';
 
 
-const socket = io('http://localhost:5001');
+const socket = io('https://social-media-host-backends.onrender.com');
 
 function Message() {
   const [messages, setMessages] = useState([]);
