@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PostAdd.css';
 import SideNav from './SideNav';
 import { useSelector } from 'react-redux';
-import { TokenRequest } from '../AxiosCreate';
+import { TokenRequest, basicRequest } from '../AxiosCreate';
 import { useNavigate } from 'react-router-dom';
 import { profileView } from './Api';
 
@@ -51,7 +51,7 @@ function PostAdd() {
         formData.append('ProfilePic', ProfilePic); 
 
         try {
-            await TokenRequest.post('/home/AddPost', formData, {
+            await basicRequest.post('/home/AddPost', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             Navigate('/Profile'); 
